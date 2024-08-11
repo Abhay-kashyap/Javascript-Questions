@@ -130,13 +130,23 @@ console.log(user.getPassword())
 user.setPassword('Mypassword123');
 
 // Q8
-  
+function Student(name){
+    this.name=name;
+
+}
+
+Student.prototype.printDetails=function(){
+    console.log(`Hello the student is ${this.name}`)
+}
+const student1=new Student('Mithun');
+student1.printDetails()
 
 //Q9
-let arr=[1,2,3,4,5]
+let arr=[1,2,3,4,5,6]
 function numberChecker(arr){
+    let value=arr;
 return function(num){
-    if(num.includes(arr)){
+    if(value.includes(num)){
         return true
     }else{
         return false
@@ -145,3 +155,26 @@ return function(num){
 }
 const checkNum=numberChecker(arr);
 console.log(checkNum(3))
+console.log(checkNum(10))
+
+
+// Q10
+function filterByCatergory(products){
+    let value=products
+    return function(Category){
+          return value.filter(product=>product.category==Category)
+    } 
+}
+let products=[
+    {name:'shirt',category:'Clothing'},
+    {name:'pants',category:'Clothing'},
+    {name:'Hats',category:'Accessories'},
+    {name:'sunglasses',category:'Accessories'}
+];
+// const clothingProduct=filterByCatergory(products)("Clothing");
+// console.log(clothingProduct)
+
+// another way call 
+const clothingProduct=filterByCatergory(products);
+const filterProduct=clothingProduct('Accessories');
+console.log(filterProduct)
