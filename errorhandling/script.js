@@ -98,30 +98,50 @@ class Calculator{
 // console.log(Calculator.add(5,10))
 
 // question7
-class user{
+// Create a class called User with properties username and password. Implement a getter method for password
+// that returns the password with all characters replaced by asterisks. Implement a setter method for password
+// that checks if the new password is at least 8 characters long and contains at least one number and one
+// uppercase letter. If the password is valid, set the new password. If not, log an error message.
+class User{
     constructor(username,password){
         this.username=username;
-        this.password=password;
+        this._password=password;
     }
-    
     getPassword(){
-        let pass=this.password;
-        let val='*';
-        for(let i=0;i<pass.length;i++){
-            pass;
-        }
-        return pass
+       
+        return '*'.repeat(this._password.length);
     }
-    setPassword(password){
-        for(let i=0;i<password.length;i++){
-            if(this.password.length>=8 &&this.password.charAt(0)===this.password.charAt(0).toUpperCase && !isNaN(this.password[i]) && password[i] !==' '  ){
-                return this.password
-        }else{
-            return false
+    setPassword(newPassword){
+        const hasUpperCase = /[A-Z]/.test(newPassword);
+        const hasNumber = /\d/.test(newPassword);
+        const isValidLength = newPassword.length >= 8;
+        if(isValidLength && hasUpperCase && hasNumber ){
+            this._password=newPassword
         }
-
+        else{
+            console.error('Error :Pasword must be at least 8 character long and contains at least one number and one uppercase letter')
         }
     }
 }
-const myUser=new user('mithun','MyPass123')
-console.log(myUser.setPassword('MyPass123'))
+const user=new User('Mithun','Mypassword123');
+console.log(user.getPassword())
+// user.setPassword('myPassword');
+// user.setPassword('MyPassword');
+user.setPassword('Mypassword123');
+
+// Q8
+  
+
+//Q9
+let arr=[1,2,3,4,5]
+function numberChecker(arr){
+return function(num){
+    if(num.includes(arr)){
+        return true
+    }else{
+        return false
+    }
+}
+}
+const checkNum=numberChecker(arr);
+console.log(checkNum(3))
